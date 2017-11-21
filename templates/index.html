@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% block header %}
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+      <title>SPACE ODDITY</title>
+
+      <!-- Bootstrap core CSS -->
+      <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+      <!--  fonts -->
+      <link href="../static/css/font-awesome.css" rel="stylesheet">
+
+      <!-- Custom styles for this template -->
+      <link href="../static/css/modern-business.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">Space Oddity - The sky is no limit</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Portfolio
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                  {% for planet in planets %}
+                  <a class="dropdown-item" href="{% url 'planet' planet.id  %}">{{ planet.name }}</a>
+                  {% endfor %}
+              </div>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#logModal">Log in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Modal -->
+    <div id="logModal"  class="modal fade" role="dialog" >
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Log in</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <form method='POST' action = "{% url 'login' %}" class="form-signin">
+                        <label for="inputEmail" class="sr-only">User name</label>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                        <br>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+                    </form>
+                </div> <!-- /.modal-body -->
+
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Ok</button>
+                    <button class="btn btn-default" href="#" data-dismiss="modal">Close</button>
+                </div> <!-- /.modal-footer -->
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    {% endblock %}
+
+    <!-- BODY -->
+    {% block body_block %}
+    <header>
+
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        </ol>
+          <div class="carousel-inner" role="listbox">
+              {% for planet in planets%}
+              <div class="carousel-item item {% if forloop.first %} active{% endif %}" style="background-image: url({{planet.main_photo}})">
+                  <div class="carousel-caption d-none d-md-block">
+                      <h1 href="{% url 'planet' planet.id  %}"> {{planet.name}} </h1>
+                      <p>{{planet.description}}</p>
+                  </div>
+              </div>
+              {%endfor%}
+          </div>
+      </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+      <h1 class="my-4">Houses out of this world</h1>
+
+      <!-- Marketing Icons Section -->
+        <div class="row">
+        {% for planet in planets %}
+            <div class="col-lg-6 mb-6 portfolio-item">
+                <div class="card h-100">
+                    <h4 class="card-header" >{{ planet.name }}</h4>
+                    <div class="card-body">
+                        <p class="card-text">{{ planet.description_long }}</p>
+                    </div>
+                    <div class="card-footer">
+                       <a href = "{% url 'planet' planet.id  %}">
+                           <button type="button" class="btn btn-info btn-lg">Find Houses</button>
+                       </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+      </div>
+    </div>
+
+    {% endblock %}
+
+    <!-- Footer -->
+    {% block footer %}
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/scripts/home.js"></script>
+
+  </body>
+
+</html>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SPACE ODDITY</title>
+</head>
+<body>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+
+
+<div class="container">
+
+        <h2>Return to <a href="{% url 'index' %}"> home page</a> </h2>
+
+    <h1>Houses on {{planet.name}}</h1>
+    <p>Pick the house you want!</p>
+
+
+
+    {% for house in planet.houses.all %}
+    <a href="{% url 'change_ownership' house.id  %}">
+        <button class="btn btn-lg {% if house.owner %} btn-danger {% else %} btn.info {% endif %}">House #{{ house.id }}: {{ house.price }}$ [OWNER: {{ house.owner }}]</button>
+    </a>
+    {% endfor %}
+</div>
+</body>
+</html>

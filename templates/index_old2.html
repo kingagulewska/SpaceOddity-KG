@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <title>SPACE ODDITY</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <h1>Welcome to Space Oddity</h1>
+            <p>Choose your favorite planet!</p>
+
+
+
+            {% for planet in planets %}
+            <a href="{% url 'planet' planet.id  %}">
+                <button class="btn btn-primary">
+                    {{ planet.name }}
+                </button>
+            </a>
+            {% endfor %}
+        </div>
+
+        <div class="col-5">
+            <h2>My properties
+                <hr> <small>(total value of {{total_value}}$)</small></h2>
+            {% if user.houses.all %}
+
+            {% for house in user.houses.all %}
+            <a href="{% url 'planet' house.planet.id %}">
+                <button class="btn btn-info">House #{{ house.id }}: on {{ house.planet }}</button>
+            </a>
+            {% endfor %}
+            {% else %}
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
