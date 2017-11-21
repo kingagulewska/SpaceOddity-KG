@@ -24,7 +24,7 @@ SECRET_KEY = '!kzb+c@1aar%)p5&4hr(!d*j^i3^aftb=ts-_*o4nxtq$z@hb('
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'kingag.pythonanywhere.com']
 
 
 # Application definition
