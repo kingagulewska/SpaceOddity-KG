@@ -1,11 +1,13 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404
-from main_app import models
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from main_app import models
+from main_app.forms import SearchForm
+
 
 # Create your views here.
 def generate_params():
@@ -22,7 +24,14 @@ def generate_params():
     return context
 
 def index(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            return redirect('search_results', form.cleaned_data['query'])
+    else:
+        form = SearchForm()
     user = User.objects.first()
+
 
     properties = user.houses.all()
     total_value = sum([house.price for house in properties])
@@ -31,15 +40,46 @@ def index(request):
     context = {
         'planets': planets,
         'user': User.objects.first(),
-        'total_value': total_value
+        'total_value': total_value,
+        'form': form
     }
     return render(request, 'index.html', context)
 
+def get_search_results(keyword):
+    houses_by_name = models.House.objects.filter(name__contains=keyword)
+    planets = models.Planet.objects.filter(name__contains=keyword)
+    context = {
+        'houses_by_name': houses_by_name,
+        'planets': planets
+    }
+
+    return context
+
+
+def search_results(request, keyword):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            return redirect('search_results', form.cleaned_data['query'])
+    else:
+        form = SearchForm()
+
+    context = get_search_results(keyword)
+
+    return render(request, 'results.html', context)
+
 
 def planet(request, planet_id):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            return redirect('search_results', form.cleaned_data['query'])
+    else:
+        form = SearchForm()
     params = generate_params()
     planet = get_object_or_404(models.Planet, id=planet_id)
     params['planet'] = planet
+    params['form'] = form
     return render(request, 'planet.html', params)
 
 
@@ -74,6 +114,3 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
     else:
         return render_to_response('login.html', {}, context)
-
-def nav_bar():
-    return render()
