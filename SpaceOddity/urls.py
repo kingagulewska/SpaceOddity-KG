@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^change_ownership/(?P<house_id>[0-9]+)', views.change_ownership, name='change_ownership'),
     url(r'^$', views.index, name='index'),
     url(r'^login/$', views.user_login, name='login'),
+    url(r'^search/(?P<keyword>\w+)$', views.search_results, name='search_results'),
 ]

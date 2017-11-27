@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+{% extends 'index.html' %}
+
+
+{% block body_block %}
+<h1>Houses by name:</h1>
+{% for house in houses_by_name %}
+<a href="{% url 'planet' house.planet.id %}"><button class="btn btn-lg">{{ house.name }}</button></a>
+{% endfor %}
+
+<h1>Planets:</h1>
+{% for planet in planets %}
+<div class="container">
+    <a href="{% url 'planet' planet.id %}"><button class="btn btn-lg btn-info">{{ planet.name }}</button></a>
+    {% for house in planet.houses.all %}
+    <a href="{% url 'planet' planet.id %}" ><button class="btn btn-sm btn-danger">{{ house.name }}</button></a>
+    {% endfor %}
+</div>
+{% endfor %}
+
+
+{% endblock %}
+
+
