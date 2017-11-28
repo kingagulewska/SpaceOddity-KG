@@ -90,7 +90,8 @@ def house(request, house_id):
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
-            return redirect(reverse('ayment:process'))
+            request.session['house_id'] = house_id
+            return redirect('search_results', form.cleaned_data['query'])
 
     else:
         form = SearchForm()
