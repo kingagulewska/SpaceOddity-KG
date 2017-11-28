@@ -21,6 +21,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^planet/(?P<planet_id>[0-9]+)', views.planet, name='planet'),
+    url(r'^house/(?P<house_id>[0-9]+)', views.house, name='house'),
     url(r'^change_ownership/(?P<house_id>[0-9]+)', views.change_ownership, name='change_ownership'),
     url(r'^$', views.index, name='index'),
     url(r'^login/$', views.user_login, name='login'),

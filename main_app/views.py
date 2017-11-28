@@ -82,6 +82,18 @@ def planet(request, planet_id):
     params['form'] = form
     return render(request, 'planet.html', params)
 
+def house(request, house_id):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            return redirect('search_results', form.cleaned_data['query'])
+    else:
+        form = SearchForm()
+    params = generate_params()
+    house = get_object_or_404(models.House, id=house_id)
+    params['house'] = house
+    params['form'] = form
+    return render(request, 'house.html', params)
 
 def change_ownership(request, house_id):
     house = get_object_or_404(models.House, id=house_id)

@@ -415,19 +415,35 @@ model</ColNames>
     </column>
     <column id="91" parent="13" name="house_photo">
       <Position>4</Position>
-      <DataType>VARCHAR(100)(0,-1)|12</DataType>
+      <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="92" parent="13" name="name">
       <Position>5</Position>
-      <DataType>VARCHAR(50)(0,-1)|12</DataType>
+      <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="93" parent="13">
+    <column id="93" parent="13" name="house_desc_short">
+      <Position>6</Position>
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <column id="94" parent="13" name="house_desc_long">
+      <Position>7</Position>
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <column id="95" parent="13" name="bedroom_no">
+      <Position>8</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="96" parent="13" name="size">
+      <Position>9</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <key id="97" parent="13">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="94" parent="13" name="#FAKE_main_app_house_2">
+    <foreign-key id="98" parent="13" name="#FAKE_main_app_house_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>owner_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -437,7 +453,7 @@ model</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <foreign-key id="95" parent="13" name="#FAKE_main_app_house_1">
+    <foreign-key id="99" parent="13" name="#FAKE_main_app_house_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>planet_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -447,43 +463,43 @@ model</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="96" parent="14" name="id">
+    <column id="100" parent="14" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="97" parent="14" name="name">
+    <column id="101" parent="14" name="name">
       <Position>1</Position>
       <DataType>VARCHAR(50)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="98" parent="14" name="description">
+    <column id="102" parent="14" name="description">
       <Position>2</Position>
       <DataType>VARCHAR(100)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="99" parent="14" name="description_long">
+    <column id="103" parent="14" name="description_long">
       <Position>3</Position>
       <DataType>VARCHAR(1000)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="100" parent="14" name="main_photo">
+    <column id="104" parent="14" name="main_photo">
       <Position>4</Position>
       <DataType>VARCHAR(100)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="101" parent="14" name="small_photo">
+    <column id="105" parent="14" name="small_photo">
       <Position>5</Position>
       <DataType>VARCHAR(100)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="102" parent="14">
+    <key id="106" parent="14">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="103" parent="15" name="name">
+    <column id="107" parent="15" name="name">
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="104" parent="15" name="seq">
+    <column id="108" parent="15" name="seq">
       <Position>1</Position>
       <DataType>(0,-1)|12</DataType>
     </column>

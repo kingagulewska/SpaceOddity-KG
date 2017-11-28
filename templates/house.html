@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+{% extends 'index.html' %}
+
+
+{% block body_block %}
+
+<!-- Page Content -->
+<div class="container">
+
+  <!-- Page Heading/Breadcrumbs -->
+  <h1 class="mt-4 mb-3">Portfolio <small>{{planet.name}}</small> </h1>
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="{% url 'index' %}">Home</a>
+    </li>
+      <li class="breadcrumb-item">
+          <a href="{% url 'planet' house.planet.id  %}">{{house.planet}}</a>
+      </li>
+      <li class="breadcrumb-item active">{{house.name}}</li>
+  </ol>
+
+  <!-- Portfolio Item Row -->
+  <div class="row">
+
+    <div class="col-md-8">
+      <img class="img-fluid" src={{house.house_photo}}  alt="">
+    </div>
+
+    <div class="col-md-4">
+      <h2 class="my-3">{{house.name}}</h2>
+      <h5 class="my-3">{{house.house_desc_short}}</h5>
+      <br>
+      <p>{{house.house_desc_long}}</p>
+        <br>
+      <h3 class="my-3">House Details</h3>
+      <ul>
+          <li>Price : {{house.price}} $</li>
+          <li>Number of Bedrooms : {{house.bedroom_no}}</li>
+          <li>Size : {{house.size}}</li>
+      </ul>
+        <br>
+        <br>
+        <a href = "#">
+            <button type="button" class="btn btn-success btn-lg btn-block">Buy</button>
+        </a>
+        <br>
+        <br>
+    </div>
+
+
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
+    {% endblock %}
+
+

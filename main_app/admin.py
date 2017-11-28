@@ -1,7 +1,9 @@
 from django.contrib import admin
-from main_app.models import Planet, House
+import main_app.models as m
 
 # Register your models here.
 
-admin.site.register(Planet)
-admin.site.register(House)
+admin.site.register(m.Planet)
+admin.site.register(m.House)
+#admin.site.register(Buyer)
+
