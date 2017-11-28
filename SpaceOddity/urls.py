@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^login/$', views.user_login, name='login'),
     url(r'^search/(?P<keyword>\w+)$', views.search_results, name='search_results'),
+    url(r'^paypal/', include('paypal.standard.ipn.urls'))
 ]

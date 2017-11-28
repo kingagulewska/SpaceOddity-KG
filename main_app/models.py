@@ -23,8 +23,8 @@ class House(models.Model):
     name = models.CharField(max_length=50)
     house_photo = models.CharField(max_length=100)
     house_desc_short = models.CharField(max_length=150)
-    house_desc_long = models.CharField(max_length=5000)
-    size = models.IntegerField()
+    house_desc_long = models.CharField(max_length=1500)
+    size_m = models.IntegerField()
     bedroom_no = models.IntegerField()
 
     def __str__(self):

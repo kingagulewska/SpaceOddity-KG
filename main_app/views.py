@@ -7,6 +7,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from main_app import models
 from main_app.forms import SearchForm
+from paypal.standard.forms import PayPalPaymentsForm
+from django.core.urlresolvers import reverse
 
 
 # Create your views here.
@@ -83,17 +85,20 @@ def planet(request, planet_id):
     return render(request, 'planet.html', params)
 
 def house(request, house_id):
+    house = get_object_or_404(models.House, id=house_id)
+
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
-            return redirect('search_results', form.cleaned_data['query'])
+            return redirect(reverse('ayment:process'))
+
     else:
         form = SearchForm()
     params = generate_params()
-    house = get_object_or_404(models.House, id=house_id)
     params['house'] = house
     params['form'] = form
     return render(request, 'house.html', params)
+
 
 def change_ownership(request, house_id):
     house = get_object_or_404(models.House, id=house_id)

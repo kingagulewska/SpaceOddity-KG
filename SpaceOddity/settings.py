@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main_app'
+    'main_app',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -123,4 +124,10 @@ STATICFILES_DIRS =[
 STATIC_URL = '/static/'
 
 STATIC_ROOT='/home/kingag/SpaceOddity-KG/static/'
+
+
+# django-paypal settings
+
+PAYPAL_RECEIVER_EMAIL = 'kinga.gulewska@gmail.com'
+PAYPAL_TEST = True
 
